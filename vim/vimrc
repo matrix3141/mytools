@@ -1,0 +1,68 @@
+set encoding=utf8
+set ts=4
+set expandtab
+set laststatus=2
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'tpope/vim-fugitive'
+Plugin 'L9'
+Plugin 'git://git.wincent.com/command-t.git'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'klen/python-mode'
+Plugin 'jpo/vim-railscasts-theme'
+Plugin 'scrooloose/nerdtree'
+Plugin 'hynek/vim-python-pep8-indent'
+Plugin 'edkolev/promptline.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'burnettk/vim-angular'
+Plugin 'groenewege/vim-less'
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'jnwhiteh/vim-golang'
+Plugin 'fatih/vim-go'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+call togglebg#map("<F5>")
+map <C-n> :NERDTreeToggle<CR>
+let g:solarized_termcolors=256
+syntax enable
+set term=xterm-256color
+set background=dark
+colorscheme solarized
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='dark'
+let g:airline_powerline_fonts = 1
+let g:promptline_preset = 'full'
+let g:Powerline_symbols = 'fancy'
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 11
+" airline symbols
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+
+augroup VimCSS3Syntax
+autocmd!
+autocmd FileType css setlocal iskeyword+=-
+augroup END
+
+set nobackup
+set nowritebackup
+set noswapfile
+set shiftwidth=4
+
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+nnoremap <C-t> :tabnew<CR>
+
