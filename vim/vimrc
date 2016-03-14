@@ -1,68 +1,87 @@
-set encoding=utf8
 set ts=4
 set expandtab
 set laststatus=2
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'
-
-Plugin 'tpope/vim-fugitive'
-Plugin 'L9'
-Plugin 'git://git.wincent.com/command-t.git'
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'klen/python-mode'
-Plugin 'jpo/vim-railscasts-theme'
-Plugin 'scrooloose/nerdtree'
-Plugin 'hynek/vim-python-pep8-indent'
-Plugin 'edkolev/promptline.vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'burnettk/vim-angular'
-Plugin 'groenewege/vim-less'
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'hail2u/vim-css3-syntax'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'jnwhiteh/vim-golang'
-Plugin 'fatih/vim-go'
-
-call vundle#end()            " required
-filetype plugin indent on    " required
-call togglebg#map("<F5>")
-map <C-n> :NERDTreeToggle<CR>
-let g:solarized_termcolors=256
-syntax enable
-set term=xterm-256color
-set background=dark
-colorscheme solarized
-
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='dark'
-let g:airline_powerline_fonts = 1
-let g:promptline_preset = 'full'
-let g:Powerline_symbols = 'fancy'
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 11
-" airline symbols
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-
-augroup VimCSS3Syntax
-autocmd!
-autocmd FileType css setlocal iskeyword+=-
-augroup END
-
+set nocompatible              
 set nobackup
 set nowritebackup
 set noswapfile
 set shiftwidth=4
+set number
 
-nnoremap <C-Left> :tabprevious<CR>
-nnoremap <C-Right> :tabnext<CR>
-nnoremap <C-t> :tabnew<CR>
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'L9'
+Plugin 'git://git.wincent.com/command-t.git'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'bling/vim-airline'
+Plugin 'mattn/webapi-vim'
+Plugin 'wildog/airline-weather.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'Lokaltog/vim-powerline'
+Plugin 'edkolev/promptline.vim'
+Plugin 'klen/python-mode'
+Plugin 'elzr/vim-json'
+Plugin 'chase/vim-ansible-yaml'
+Plugin 'fatih/vim-go'
+Plugin 'jnwhiteh/vim-golang'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'majutsushi/tagbar'
+Plugin 'Yggdroot/indentline'
+call vundle#end()            
 
+filetype plugin indent on    
+let g:solarized_termcolors=256
+syntax enable
+set background=dark
+colorscheme solarized
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:Powerline_symbols = 'fancy'
+let g:Powerline_dividers_override = ["\Ue0b0", "\Ue0b1", "\Ue0b2", "\Ue0b3"]
+let g:Powerline_symbols_override = { 'BRANCH': "\Ue0a0", 'LINE': "\Ue0a1", 'RO': "\Ue0a2" }
+let g:promptline_preset = 'full'
+
+let g:weather#area = 'losangeles,us'
+let g:weather#unit = 'imperial'
+let g:weather#appid = '948f9f5a16252ef52f13bc9155db6898'
+let g:weather#cache_file = '~/.cache/.weather'
+let g:weather#cache_ttl = '3600'
+
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+
+let g:indentLine_color_term = 239
+let g:indentLine_char = 'c'
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+
+map <C-n> :NERDTreeToggle<CR>
+nmap <F8> :TagbarToggle<CR>
+
+nnoremap <C-t>     <Esc>:tabnew<CR>
+nnoremap <C-p>     <Esc>:tabp<CR>
+
+set pastetoggle=<F2>
+
+set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
