@@ -7,6 +7,9 @@ set nowritebackup
 set noswapfile
 set shiftwidth=4
 set number
+set term=xterm-256color
+
+filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -32,6 +35,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'majutsushi/tagbar'
 Plugin 'Yggdroot/indentline'
+Plugin 'nsf/gocode', {'rtp': 'nvim/'}
 call vundle#end()            
 
 filetype plugin indent on    
@@ -39,6 +43,10 @@ let g:solarized_termcolors=256
 syntax enable
 set background=dark
 colorscheme solarized
+let g:solarized_visibility = "high"
+let g:solarized_contrast = "high"
+let g:solarized_termtrans = 1
+call togglebg#map("<F5>")
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -59,9 +67,7 @@ let g:go_highlight_structs = 1
 let g:go_highlight_interfaces = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
-
-let g:indentLine_color_term = 239
-let g:indentLine_char = 'c'
+let g:go_bin_path = expand("~/.gotools")
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -70,6 +76,8 @@ set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+let g:indentLine_color_term = 239
 
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
