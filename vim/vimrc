@@ -20,8 +20,6 @@ Plugin 'L9'
 Plugin 'git://git.wincent.com/command-t.git'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'bling/vim-airline'
-Plugin 'mattn/webapi-vim'
-Plugin 'wildog/airline-weather.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'Lokaltog/vim-powerline'
 Plugin 'edkolev/promptline.vim'
@@ -29,6 +27,7 @@ Plugin 'klen/python-mode'
 Plugin 'elzr/vim-json'
 Plugin 'chase/vim-ansible-yaml'
 Plugin 'fatih/vim-go'
+Plugin 'rust-lang/rust.vim'
 Plugin 'jnwhiteh/vim-golang'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
@@ -55,12 +54,6 @@ let g:Powerline_dividers_override = ["\Ue0b0", "\Ue0b1", "\Ue0b2", "\Ue0b3"]
 let g:Powerline_symbols_override = { 'BRANCH': "\Ue0a0", 'LINE': "\Ue0a1", 'RO': "\Ue0a2" }
 let g:promptline_preset = 'full'
 
-let g:weather#area = 'losangeles,us'
-let g:weather#unit = 'imperial'
-let g:weather#appid = '948f9f5a16252ef52f13bc9155db6898'
-let g:weather#cache_file = '~/.cache/.weather'
-let g:weather#cache_ttl = '3600'
-
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
@@ -78,6 +71,8 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 let g:indentLine_color_term = 239
+
+let g:pymode_rope_lookup_project = 0
 
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
