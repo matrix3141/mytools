@@ -1,0 +1,41 @@
+curl -LO https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64
+chmod +x kops-linux-amd64
+sudo mv kops-linux-amd64 /usr/local/bin/kops
+apt-get install python-pip
+pip install awscli
+aws configure
+curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+mv ./kubectl /usr/local/bin/kubectl
+ssh-keygen -f .ssh/id_rsa
+kops create cluster --name=kubernetes.nextmon.net --state=s3://kops-state-mehrdad --zones=us-west-1b --node-count=2 --node-size=t2.micro --master-size=t2.micro --dns-zone=kubernetes.nextmon.net
+
+kops edit cluster kubernetes.nextmon.net --state=s3://kops-state-mehrdad
+kops update cluster kubernetes.nextmon.net --yes --state=s3://kops-state-mehrdad
+
+
+Suggestions:
+ * validate cluster: kops validate cluster
+ * list nodes: kubectl get nodes --show-labels
+ * ssh to the master: ssh -i ~/.ssh/id_rsa admin@api.kubernetes.nextmon.net
+The admin user is specific to Debian. If not using Debian please use the appropriate user based on your OS.
+ * read about installing addons: https://github.com/kubernetes/kops/blob/master/docs/addons.md
+
+
+Suggestions:
+ * list clusters with: kops get cluster
+ * edit this cluster with: kops edit cluster kubernetes.nextmon.net
+ * edit your node instance group: kops edit ig --name=kubernetes.nextmon.net nodes
+ * edit your master instance group: kops edit ig --name=kubernetes.nextmon.net master-us-west-1b
+
+Finall expose deployement hello-minikube --type=NodePortluster with: kops update cluster kubernetes.nextmon.net --yes
+
+
+# test 
+
+kubectl run hello-minikube --image=gcr.io/google_containers/echoserver:1.4 --port=8080
+kubectl expose deployement hello-minikube --type=NodePort
+kubectl get service
+
+# delete
+
+kubectl delete cluster --name kubernetes.nextmon.net --state=s3://kops-state-mehrdad --yes
