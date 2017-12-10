@@ -39,3 +39,11 @@ kubectl get service
 # delete
 
 kubectl delete cluster --name kubernetes.nextmon.net --state=s3://kops-state-mehrdad --yes
+
+# create pod
+kubectl create -f pod-xxxxx.yml
+#useful commands
+kubectl get pod
+kubectl describe pod pod-name
+kubectl port-forward pod-name localport:podport
+kubectl expose pod pod-name --type=NodePort --name namexxx
