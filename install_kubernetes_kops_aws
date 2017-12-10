@@ -7,6 +7,7 @@ aws configure
 curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
 mv ./kubectl /usr/local/bin/kubectl
 ssh-keygen -f .ssh/id_rsa
+[[ optons for create cluster: --ssh-public-key=~/.ssh/shared_rsa.pub ]]
 kops create cluster --name=kubernetes.nextmon.net --state=s3://kops-state-mehrdad --zones=us-west-1b --node-count=2 --node-size=t2.micro --master-size=t2.micro --dns-zone=kubernetes.nextmon.net
 
 kops edit cluster kubernetes.nextmon.net --state=s3://kops-state-mehrdad
@@ -38,7 +39,7 @@ kubectl get service
 
 # delete
 
-kubectl delete cluster --name kubernetes.nextmon.net --state=s3://kops-state-mehrdad --yes
+kops delete cluster --name=kubernetes.nextmon.net --state=s3://kops-state-mehrdad --yes
 
 # create pod
 kubectl create -f pod-xxxxx.yml
