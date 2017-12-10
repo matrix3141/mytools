@@ -52,3 +52,5 @@ kubectl expose pod pod-name --type=NodePort --name namexxx
 # UI
 kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
 
+# kubectl Cheat Sheet
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/
