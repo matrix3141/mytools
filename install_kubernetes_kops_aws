@@ -54,3 +54,8 @@ kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/
 
 # kubectl Cheat Sheet
 https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+
+# change nodes 
+kops edit ig nodes
+kops update cluster --yes
+kops rolling-update cluster   << maybe it needs!
