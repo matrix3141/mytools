@@ -47,3 +47,7 @@ kubectl get pod
 kubectl describe pod pod-name
 kubectl port-forward pod-name localport:podport
 kubectl expose pod pod-name --type=NodePort --name namexxx
+
+# UI
+kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+
