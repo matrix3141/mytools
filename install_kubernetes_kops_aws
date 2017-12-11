@@ -59,3 +59,26 @@ https://kubernetes.io/docs/reference/kubectl/cheatsheet/
 kops edit ig nodes
 kops update cluster --yes
 kops rolling-update cluster   << maybe it needs!
+
+# scale
+kubectl scale --replicas=4 -f kube/pod-ngnx-replica.yml
+or
+kubectl get rc
+kubectl scale --replicas=4 rc/ngnx-controller
+
+# delete a replica 
+kubectl delete ngnx-controller-f7fq2
+# delete the replica controller
+kubectl delete rc/replica-name
+
+# expose deployment
+kubectl expose deployment ngnx-deployment --type=NodePort
+
+#upgrade deployment image
+kubectl set image deployment/ngnx-deployment ngnx=mehrdadrad/myngx:2
+kubectl rollout status deployment/ngnx-deployment
+
+#upgrade deployment UNDO
+kubectl rollout undo deployment/ngnx-deployment
+kubectl rollout status deployment/ngnx-deployment
+
