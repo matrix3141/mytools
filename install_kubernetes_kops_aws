@@ -82,3 +82,11 @@ kubectl rollout status deployment/ngnx-deployment
 kubectl rollout undo deployment/ngnx-deployment
 kubectl rollout status deployment/ngnx-deployment
 
+###### 
+
+# create name space
+kubectl create namespace myspace
+kubectl get namespaces
+* can be able to set specific namespace instead of default
+
+>> kind: ResourceQuota
