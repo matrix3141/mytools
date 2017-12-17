@@ -13,6 +13,8 @@ kops create cluster --name=kubernetes.nextmon.net --state=s3://kops-state-mehrda
 kops edit cluster kubernetes.nextmon.net --state=s3://kops-state-mehrdad
 kops update cluster kubernetes.nextmon.net --yes --state=s3://kops-state-mehrdad
 
+kops get ig or kops get instancegroups
+kops edit ig nodes
 
 Suggestions:
  * validate cluster: kops validate cluster
